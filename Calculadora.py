@@ -1,23 +1,63 @@
-#Sumar
+def get_number(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Por favor, introduzca un número válido.")
 
-n1 = int(input("Intruzca el numero: "))
-n2 = int(input("Intruzca el segundo numero: "))
-print(" la suma de " ,n1," + " ,n2," es igual", n1 + n2)
+def sumar(a, b):
+    return a + b
 
-#Restar
+def restar(a, b):
+    return a - b
 
-n1 = int(input("Intruzca el numero: "))
-n2 = int(input("Intruzca el segundo numero: "))
-print( n1 - n2)
+def multiplicar(a, b):
+    return a * b
 
-#Multiplicar
+def dividir(a, b):
+    while b == 0:
+        print("El divisor no puede ser cero. Por favor, introduzca un nuevo número.")
+        b = get_number("Introduzca el segundo número: ")
+    return a / b
 
-n1 = int(input("Intruzca el numero: "))
-n2 = int(input("Intruzca el segundo numero: "))
-print( n1 * n2)
+def mostrar_menu():
+    print("Seleccione la operación:")
+    print("1. Sumar")
+    print("2. Restar")
+    print("3. Multiplicar")
+    print("4. Dividir")
+    print("5. Salir")
 
-#Dividir
+def main():
+    while True:
+        mostrar_menu()
+        opcion = input("Introduzca el número de la operación que desea realizar: ")
 
-n1 = int(input("Intruzca el numero: "))
-n2 = int(input("Intruzca el segundo numero: "))
-print( n1 / n2)
+        if opcion == '5':
+            print("Gracias por usar la calculadora. ¡Adiós!")
+            break
+
+        if opcion not in {'1', '2', '3', '4'}:
+            print("Opción no válida. Por favor, intente de nuevo.")
+            continue
+
+        a = get_number("Introduzca el primer número: ")
+        b = get_number("Introduzca el segundo número: ")
+
+        if opcion == '1':
+            resultado = sumar(a, b)
+            operacion = "suma"
+        elif opcion == '2':
+            resultado = restar(a, b)
+            operacion = "resta"
+        elif opcion == '3':
+            resultado = multiplicar(a, b)
+            operacion = "multiplicación"
+        elif opcion == '4':
+            resultado = dividir(a, a)
+            operacion = "división"
+
+        print(f"El resultado de la {operacion} de {a} y {b} es {resultado}")
+
+if __name__ == "__main__":
+    main()
